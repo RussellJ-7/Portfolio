@@ -1,0 +1,396 @@
+/* =========================================================================
+   PORTFOLIO STYLESHEET — read top to bottom, it's written as a lesson.
+   Every new CSS concept gets a comment the FIRST time it shows up.
+   After that, you'll see it reused without a re-explanation.
+   ========================================================================= */
+
+
+/* -------------------------------------------------------------------------
+   1. CUSTOM PROPERTIES ("CSS variables")
+   Define values once here, reuse them everywhere with var(--name).
+   This is the single biggest quality-of-life upgrade for a beginner:
+   change one line here, the whole site updates.
+   ------------------------------------------------------------------------- */
+:root {
+  --paper-bg:     #E4DAC4;  /* kraft board background */
+  --paper-card:   #F6F1E4;  /* off-white index card */
+  --ink:          #211D16;  /* near-black, warmer than pure #000 */
+  --stamp-red:    #A32B1F;
+  --stamp-green:  #34503F;
+  --tape:         rgba(230, 219, 140, 0.55);
+  --line:         rgba(33, 29, 22, 0.15); /* soft pencil-grey rule lines */
+
+  --font-display: 'Anton', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+}
+
+/* -------------------------------------------------------------------------
+   2. THE RESET
+   Browsers add their own default margins/padding to elements. We zero
+   them out first so every spacing decision below is one WE made on
+   purpose, not a leftover default fighting us.
+   ------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* explained below, at .index-card */
+}
+
+body {
+  background-color: var(--paper-bg);
+  /* a very subtle grid, like graph/engineering paper, using two repeating
+     linear gradients as a background image instead of an actual image file */
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  line-height: 1.5;
+}
+
+a { color: inherit; }
+
+/* -------------------------------------------------------------------------
+   3. THE BOX MODEL (the single most important CSS concept)
+   Every element is a rectangle made of four layers, from inside out:
+     content -> padding -> border -> margin
+   padding = space INSIDE the border (pushes content away from the edge)
+   border  = the edge itself
+   margin  = space OUTSIDE the border (pushes other elements away)
+
+   By default, width/height only measure the CONTENT box, so adding
+   padding or a border makes the element bigger than the width you set.
+   `box-sizing: border-box` (set globally above) changes that: width/height
+   now include padding + border, so an element with width:300px stays
+   300px wide no matter how much padding you add. Almost every modern
+   site uses border-box for exactly this reason.
+   ------------------------------------------------------------------------- */
+
+
+/* -------------------------------------------------------------------------
+   4. MASTHEAD — our first FLEXBOX
+   Flexbox arranges children in a single row (or column) and handles the
+   "push these apart" / "center these" problems that used to be painful.
+   display:flex on a parent turns on flex layout for its direct children.
+   ------------------------------------------------------------------------- */
+.masthead {
+  display: flex;
+  justify-content: space-between; /* pushes the two children to opposite ends */
+  align-items: flex-start;        /* aligns them along the top */
+  flex-wrap: wrap;                /* lets them drop to a new line on narrow screens */
+  gap: 24px;                      /* space between flex children, no margin hacks needed */
+  padding: 32px clamp(20px, 5vw, 64px) 0;
+}
+
+.masthead__id-card {
+  position: relative; /* explained at .tape below — this lets punch-strip sit inside precisely */
+  background: var(--paper-card);
+  border: 3px solid var(--ink);
+  padding: 18px 24px 18px 34px; /* extra left padding to leave room for the punch-strip */
+  transform: rotate(-1.5deg);   /* a slight tilt is what sells "pinned to a board" */
+  box-shadow: 6px 6px 0 var(--ink); /* a hard offset shadow reads as a physical card, not a soft UI shadow */
+}
+
+/* -------------------------------------------------------------------------
+   5. PSEUDO-ELEMENTS (::before / ::after)
+   These let you generate an extra box attached to an element without
+   adding a real HTML tag for it. Perfect for pure decoration — like the
+   row of punch-card holes down the card's edge — that has no real content.
+   `content: ""` is required, even empty, or the pseudo-element won't render.
+   ------------------------------------------------------------------------- */
+.punch-strip {
+  position: absolute; /* positions relative to the nearest ancestor with position:relative */
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 100%;
+  background-color: var(--ink);
+  /* repeating-radial-gradient "cuts" evenly spaced circles out of the strip
+     by painting them the same color as the page background */
+  background-image: radial-gradient(circle at 11px, var(--paper-bg) 5px, transparent 5.5px);
+  background-size: 22px 26px;
+  background-repeat: repeat-y;
+}
+
+.id-card__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--stamp-red);
+}
+
+.id-card__name {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+}
+
+.id-card__role {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.masthead__nav {
+  display: flex;
+  gap: 20px;
+  padding-top: 12px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.masthead__nav a {
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease; /* animates the border smoothly instead of snapping */
+}
+
+.masthead__nav a:hover {
+  border-color: var(--stamp-red);
+}
+
+
+/* -------------------------------------------------------------------------
+   6. HERO
+   ------------------------------------------------------------------------- */
+.hero {
+  padding: 56px clamp(20px, 5vw, 64px) 40px;
+  max-width: 780px;
+}
+
+.hero__headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 9vw, 5.5rem);
+  line-height: 0.92;
+  display: flex;
+  flex-direction: column; /* stack the three <span> lines instead of side by side */
+}
+
+/* Each line gets its own slight rotation and a torn-paper highlight behind it,
+   so the headline itself looks collaged rather than typed in one block. */
+.hero__headline span:nth-child(1) { transform: rotate(-1deg); }
+.hero__headline span:nth-child(2) {
+  transform: rotate(0.8deg);
+  background: var(--paper-card);
+  width: fit-content;
+  padding: 0 10px;
+  box-decoration-break: clone;
+}
+.hero__headline span:nth-child(3) { transform: rotate(-0.6deg); color: var(--stamp-red); }
+
+.hero__note {
+  margin-top: 24px;
+  padding: 14px 18px;
+  background: var(--paper-card);
+  border-left: 4px solid var(--ink);
+  font-size: 0.85rem;
+  max-width: 480px;
+  transform: rotate(0.6deg);
+}
+
+
+/* -------------------------------------------------------------------------
+   7. SECTION TITLE — reused pattern
+   ------------------------------------------------------------------------- */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  padding: 0 clamp(20px, 5vw, 64px);
+  margin-bottom: 28px;
+}
+
+
+/* -------------------------------------------------------------------------
+   8. CORKBOARD — our first CSS GRID
+   Flexbox is great for one row/column. Grid is better once you want a
+   proper 2-D layout — here, project cards that wrap into columns AND rows.
+   `repeat(auto-fit, minmax(260px, 1fr))` reads as: "fit as many columns as
+   will hold at least 260px each, and stretch them evenly to fill the rest."
+   That single line is what makes this responsive with zero media queries.
+   ------------------------------------------------------------------------- */
+.corkboard {
+  padding: 40px 0 60px;
+}
+
+.corkboard__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+
+.index-card {
+  position: relative;
+  background: var(--paper-card);
+  border: 3px solid var(--ink);
+  padding: 22px 22px 22px 34px;
+  box-shadow: 7px 7px 0 var(--ink);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* Animation: each card settles into place on load. `animation` here
+     references the @keyframes block defined further down. */
+  animation: settle 0.5s ease backwards;
+}
+
+/* Three fixed tilt angles, applied by the data-tilt attribute in the HTML,
+   so no two cards sit at exactly the same angle — that variation is what
+   reads as "pinned by hand" instead of "generated by a template." */
+.index-card[data-tilt="a"] { transform: rotate(-1.2deg); animation-delay: 0s; }
+.index-card[data-tilt="b"] { transform: rotate(1deg);    animation-delay: 0.12s; }
+.index-card[data-tilt="c"] { transform: rotate(-0.6deg); animation-delay: 0.24s; }
+
+/* On hover, straighten the card and lift the shadow — motion that responds
+   to the user, which reads as interactive rather than decorative. */
+.index-card:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 10px 10px 0 var(--ink);
+}
+
+@keyframes settle {
+  from { opacity: 0; transform: translateY(16px) rotate(0deg); }
+  /* `to` intentionally has no fixed end state here — it inherits whichever
+     data-tilt rotation is already set on the element, so each card settles
+     into ITS OWN angle rather than one shared angle. */
+}
+
+.index-card__tag {
+  font-size: 0.7rem;
+  color: var(--stamp-red);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.index-card__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.index-card__body {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.index-card__stack {
+  font-size: 0.7rem;
+  color: var(--ink);
+  opacity: 0.65;
+  margin-bottom: 16px;
+}
+
+/* -------------------------------------------------------------------------
+   9. TAPE CORNERS — a second use of pseudo-elements, this time via a real
+   element (div.tape) instead of ::before, just to show both approaches.
+   Positioned absolutely relative to the .index-card (position: relative).
+   ------------------------------------------------------------------------- */
+.tape {
+  position: absolute;
+  width: 70px;
+  height: 26px;
+  background: var(--tape);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.tape--top-left  { top: -12px; left: 24px;  transform: rotate(-8deg); }
+.tape--top-right { top: -12px; right: 24px; transform: rotate(6deg); }
+
+/* -------------------------------------------------------------------------
+   10. STAMPS
+   A rotated badge with a thick border to mimic a rubber ink stamp.
+   ------------------------------------------------------------------------- */
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border: 3px solid currentColor; /* currentColor = "whatever this element's text color is" */
+  border-radius: 4px;
+  transform: rotate(-4deg);
+}
+
+.stamp--green { color: var(--stamp-green); }
+.stamp--red   { color: var(--stamp-red); }
+
+
+/* -------------------------------------------------------------------------
+   11. ABOUT — a "torn paper clipping" look using clip-path
+   clip-path lets you cut a shape out of a box. A jagged polygon here
+   fakes a torn paper edge along the top of the clipping.
+   ------------------------------------------------------------------------- */
+.about {
+  padding: 20px 0 60px;
+}
+
+.about__clipping {
+  max-width: 620px;
+  margin: 0 clamp(20px, 5vw, 64px);
+  background: var(--paper-card);
+  padding: 32px 28px 24px;
+  box-shadow: 6px 6px 0 var(--ink);
+  clip-path: polygon(
+    0% 4%, 6% 0%, 14% 3%, 22% 0%, 30% 4%, 38% 0%, 46% 3%, 54% 0%,
+    62% 4%, 70% 0%, 78% 3%, 86% 0%, 94% 4%, 100% 0%,
+    100% 100%, 0% 100%
+  );
+}
+
+.about__clipping p {
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+
+/* -------------------------------------------------------------------------
+   12. CONTACT
+   ------------------------------------------------------------------------- */
+.contact {
+  padding: 20px clamp(20px, 5vw, 64px) 60px;
+}
+
+.contact__card {
+  display: inline-block;
+  background: var(--paper-card);
+  border: 3px dashed var(--ink); /* dashed border reads as "cut along this line" */
+  padding: 24px 32px;
+  transform: rotate(1deg);
+}
+
+.contact__line {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.contact__line a {
+  text-decoration: underline;
+  text-decoration-color: var(--stamp-red);
+  text-underline-offset: 3px;
+}
+
+
+/* -------------------------------------------------------------------------
+   13. FOOTER
+   ------------------------------------------------------------------------- */
+.footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+
+/* -------------------------------------------------------------------------
+   14. ACCESSIBILITY: respect reduced-motion preferences.
+   Some people set their OS to reduce motion (motion sickness, vestibular
+   issues). This media query strips animations for them without you
+   needing to build a toggle.
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

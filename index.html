@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Russell — Portfolio</title>
+
+  <!-- Two fonts, two jobs: Anton for shouting, Space Mono for data/labels -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="masthead">
+    <div class="masthead__id-card">
+      <span class="punch-strip" aria-hidden="true"></span>
+      <p class="id-card__label">FILE NO. 001</p>
+      <h1 class="id-card__name">RUSSELL</h1>
+      <p class="id-card__role">SOFTWARE / TOOLS / GAMES</p>
+    </div>
+
+    <nav class="masthead__nav">
+      <a href="#projects">PROJECTS</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <h2 class="hero__headline">
+        <span>I BUILD</span>
+        <span>SMALL, WEIRD,</span>
+        <span>USEFUL THINGS.</span>
+      </h2>
+      <p class="hero__note">
+        — a scrap of paper taped to the corkboard —<br>
+        Personal tools, an idle game, a desktop widget. Scroll down,
+        everything below is real and shipped.
+      </p>
+    </section>
+
+    <!-- ============ PROJECTS (the corkboard) ============ -->
+    <section id="projects" class="corkboard">
+
+      <h2 class="section-title">CASE FILES</h2>
+
+      <div class="corkboard__grid">
+
+        <!-- Each .index-card is a project. data-tilt controls the pinned angle in CSS. -->
+        <article class="index-card" data-tilt="a">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <div class="tape tape--top-left" aria-hidden="true"></div>
+          <p class="index-card__tag">CASE 01 — PYTHON</p>
+          <h3 class="index-card__title">Gmail Address Scanner</h3>
+          <p class="index-card__body">
+            A packaged OAuth utility that scans a Gmail account for
+            transactional emails and flags which companies likely hold
+            your mailing address. Built to actually hand to a friend,
+            not just run locally.
+          </p>
+          <p class="index-card__stack">PYTHON · OAUTH · CLI → BATCH FILE</p>
+          <span class="stamp stamp--green">SHIPPED</span>
+        </article>
+
+        <article class="index-card" data-tilt="b">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <div class="tape tape--top-right" aria-hidden="true"></div>
+          <p class="index-card__tag">CASE 02 — UNITY 6</p>
+          <h3 class="index-card__title">Plinko Tycoon</h3>
+          <p class="index-card__body">
+            A Cookie-Clicker-style idle game with physics-based Plinko
+            drops. Procedural peg generation, a singleton currency
+            manager wired through C# events, and a stack of
+            ScriptableObject upgrades — Golden Peg, Coin Magnet,
+            Auto Dropper.
+          </p>
+          <p class="index-card__stack">C# · UNITY 2D PHYSICS · SCRIPTABLEOBJECTS</p>
+          <span class="stamp stamp--red">IN PROGRESS</span>
+        </article>
+
+        <article class="index-card" data-tilt="c">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <div class="tape tape--top-left" aria-hidden="true"></div>
+          <p class="index-card__tag">CASE 03 — ELECTRON</p>
+          <h3 class="index-card__title">Pixel Weather Widget</h3>
+          <p class="index-card__body">
+            A One Piece-themed desktop weather widget: frameless
+            transparent window, live WMO weather-code mapping, reverse
+            geocoding, and hand-drawn pixel art built in Procreate and
+            laid out in Figma.
+          </p>
+          <p class="index-card__stack">ELECTRON · OPEN-METEO API · PIXEL ART</p>
+          <span class="stamp stamp--green">SHIPPED</span>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="about">
+      <h2 class="section-title">MARGIN NOTES</h2>
+      <div class="about__clipping">
+        <p>
+          I'm a hobbyist builder who likes finishing things enough to
+          hand them to someone else — a friend, a player, a browser tab.
+          Comfortable getting stuck into new tools (Unity, Electron,
+          OAuth flows) and reading the docs until it clicks.
+        </p>
+        <p>
+          Looking for CS / IT roles where I can keep building things
+          people actually use.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="contact">
+      <h2 class="section-title">GET IN TOUCH</h2>
+      <div class="contact__card">
+        <p class="contact__line">EMAIL — <a href="mailto:you@example.com">you@example.com</a></p>
+        <p class="contact__line">GITHUB — <a href="#">github.com/yourname</a></p>
+        <p class="contact__line">RESUME — <a href="#">download.pdf</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>ASSEMBLED BY HAND · <span id="year"></span></p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
