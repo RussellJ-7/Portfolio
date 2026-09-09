@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Russell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="page-header">
+    <a href="index.html" class="page-header__back">← BACK TO HOME</a>
+    <h1 class="id-card__name">ABOUT ME</h1>
+    <nav class="page-header__nav">
+      <a href="index.html#projects">PROJECTS</a>
+      <a href="skills.html">SKILLS</a>
+      <a href="about.html" aria-current="page">ABOUT</a>
+      <a href="index.html#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="about">
+      <h2 class="section-title">MARGIN NOTES</h2>
+      <div class="about__clipping">
+        <p>
+          I'm a Computer Science student at UW–Stout and an IT specialist
+          who's spent the last few years doing help desk and systems work
+          during the day, and building homelabs, games, and pixel art at
+          night. I like the whole stack of "make a computer do something
+          useful" — from swapping a laptop's motherboard, to scripting
+          user provisioning in PowerShell, to programming gameplay in Lua.
+        </p>
+        <p>
+          Outside of screens: strategic chess, sci-fi and tech reading,
+          and volleyball, competitive and pickup.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ SCRAPBOOK ============
+         Four polaroid-style frames. Each is currently a dashed
+         placeholder — swap .polaroid__placeholder for a real <img>
+         once you have photos (see the HTML comment on the first one). -->
+    <section class="about-photos">
+      <h2 class="section-title">SCRAPBOOK</h2>
+      <div class="scrapbook">
+
+        <!--
+          HOW TO SWAP IN A REAL PHOTO:
+          1. Put an image file in an /images folder next to this HTML file.
+          2. Replace the whole <div class="polaroid__placeholder">...</div>
+             with: <img src="images/your-file.jpg" alt="short description">
+          Everything else (rotation, tape, caption) stays the same.
+        -->
+        <figure class="polaroid">
+          <div class="polaroid__placeholder">PHOTO 1<br>homelab / desk setup</div>
+          <figcaption class="polaroid__caption">the homelab</figcaption>
+        </figure>
+
+        <figure class="polaroid">
+          <div class="polaroid__placeholder">PHOTO 2<br>chess</div>
+          <figcaption class="polaroid__caption">mid-game, losing on time</figcaption>
+        </figure>
+
+        <figure class="polaroid">
+          <div class="polaroid__placeholder">PHOTO 3<br>volleyball</div>
+          <figcaption class="polaroid__caption">competitive volleyball</figcaption>
+        </figure>
+
+        <figure class="polaroid">
+          <div class="polaroid__placeholder">PHOTO 4<br>pixel art / Blender</div>
+          <figcaption class="polaroid__caption">pixel art & 3D in Blender</figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ============ HOBBIES ============ -->
+    <section class="about-hobbies">
+      <h2 class="section-title">FILED UNDER "HOBBIES"</h2>
+      <div class="hobby-tags">
+        <span class="skill-tag">HOMELABBING & SELF-HOSTING</span>
+        <span class="skill-tag">GAME DEVELOPMENT</span>
+        <span class="skill-tag">PIXEL ART & ANIMATION</span>
+        <span class="skill-tag">3D MODELING (BLENDER)</span>
+        <span class="skill-tag">STRATEGIC CHESS</span>
+        <span class="skill-tag">READING — TECH & SCI-FI</span>
+        <span class="skill-tag">VOLLEYBALL</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span class="coin-spinner" aria-hidden="true"></span>
+    <p>ASSEMBLED BY HAND · <span id="year"></span></p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

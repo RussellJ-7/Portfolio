@@ -383,6 +383,252 @@ a { color: inherit; }
 
 
 /* -------------------------------------------------------------------------
+   14b. PLACEHOLDER CARD VARIANT
+   A dashed border + lower opacity marks this card as "not real content yet"
+   at a glance, so it never gets mistaken for a shipped project.
+   ------------------------------------------------------------------------- */
+.index-card--placeholder {
+  border-style: dashed;
+  opacity: 0.7;
+}
+
+.index-card--placeholder:hover {
+  opacity: 1;
+}
+
+/* -------------------------------------------------------------------------
+   14c. ABOUT TEASER (on index.html, links out to the full about.html)
+   ------------------------------------------------------------------------- */
+.about-teaser { padding: 20px 0 40px; }
+
+.about__clipping--teaser {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.clipping-link {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-decoration: none;
+  border-bottom: 2px solid var(--stamp-red);
+}
+
+/* -------------------------------------------------------------------------
+   14d. SHARED SITE NAV / PAGE HEADER
+   Used on about.html and skills.html, which are simpler than the homepage
+   masthead but still carry the punch-strip / index-card look.
+   ------------------------------------------------------------------------- */
+.page-header {
+  padding: 32px clamp(20px, 5vw, 64px) 0;
+}
+
+.page-header__back {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  margin-bottom: 18px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease;
+}
+.page-header__back:hover { border-color: var(--stamp-red); }
+
+.page-header__nav {
+  display: flex;
+  gap: 20px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  margin-top: 18px;
+}
+.page-header__nav a {
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease;
+}
+.page-header__nav a:hover,
+.page-header__nav a[aria-current="page"] {
+  border-color: var(--stamp-red);
+}
+
+/* -------------------------------------------------------------------------
+   14e. TRINKETS & IDLE ANIMATIONS
+   A few small, purely decorative touches. Each is aria-hidden in the HTML
+   since it carries no real content — screen readers should skip it.
+   ------------------------------------------------------------------------- */
+
+/* A blinking terminal cursor: opacity flips on/off in a tight loop. */
+.hero__status {
+  margin-top: 14px;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+.blink-cursor {
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* A thumbtack: a plain circle + a thin "shadow" pseudo-element, wobbling
+   slowly and infinitely with a rotation keyframe (not hover-triggered —
+   this one just idles, since a pushpin never really sits still). */
+.section-title--pinned {
+  position: relative;
+  padding-left: 40px; /* room for the pin */
+}
+.pushpin {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--stamp-red);
+  box-shadow: inset -3px -3px 0 rgba(0,0,0,0.25), 2px 3px 4px rgba(0,0,0,0.35);
+  transform-origin: center 30px; /* pivot point sits below the pin, like it's stuck through paper */
+  animation: wobble 4s ease-in-out infinite;
+}
+@keyframes wobble {
+  0%, 100% { transform: rotate(-4deg); }
+  50%      { transform: rotate(4deg); }
+}
+
+/* A spinning coin: a flattened circle that scales horizontally to fake a
+   3D flip using only 2D transforms — no images, no JS. */
+.coin-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--stamp-green);
+  border: 2px solid var(--ink);
+  margin-right: 8px;
+  vertical-align: middle;
+  animation: coin-flip 2.2s linear infinite;
+}
+@keyframes coin-flip {
+  0%   { transform: scaleX(1); }
+  50%  { transform: scaleX(0.1); background: var(--stamp-red); }
+  100% { transform: scaleX(1); }
+}
+
+/* -------------------------------------------------------------------------
+   14f. SKILLS CATALOG (skills.html)
+   A "card catalog drawer" layout: category cards, each holding a row of
+   small stamped tags. Reuses .index-card as the category container.
+   ------------------------------------------------------------------------- */
+.skills-catalog { padding: 20px 0 60px; }
+
+.skills-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.skill-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  background: var(--paper-bg);
+  border: 1.5px solid var(--ink);
+}
+
+.certs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0 clamp(20px, 5vw, 64px) 40px;
+}
+
+/* -------------------------------------------------------------------------
+   14g. SCRAPBOOK (about.html)
+   Polaroid-style photo frames, each rotated slightly and "taped" down,
+   for a physical scrapbook-page feel. Swap the placeholder background
+   for a real <img> once you have photos to drop in.
+   ------------------------------------------------------------------------- */
+.scrapbook {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  padding: 10px clamp(20px, 5vw, 64px) 20px;
+}
+
+.polaroid {
+  position: relative;
+  width: 190px;
+  background: var(--paper-card);
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 10px 10px 34px; /* extra bottom padding = the classic polaroid strip */
+  box-shadow: 5px 5px 0 rgba(33,29,22,0.25);
+}
+.polaroid:nth-child(1) { transform: rotate(-3deg); }
+.polaroid:nth-child(2) { transform: rotate(2deg); }
+.polaroid:nth-child(3) { transform: rotate(-1.5deg); }
+.polaroid:nth-child(4) { transform: rotate(3deg); }
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.04);
+  transition: transform 0.2s ease;
+}
+
+/* The placeholder "photo" itself: a dashed box standing in until a real
+   <img> is dropped into the <a>/<div>. Delete this rule once you add
+   real photos and just style the <img> directly. */
+.polaroid__placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border: 2px dashed var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.65rem;
+  padding: 8px;
+  color: rgba(33,29,22,0.5);
+}
+
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid__caption {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+.hobby-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 clamp(20px, 5vw, 64px) 50px;
+}
+
+
+/* -------------------------------------------------------------------------
    14. ACCESSIBILITY: respect reduced-motion preferences.
    Some people set their OS to reduce motion (motion sickness, vestibular
    issues). This media query strips animations for them without you

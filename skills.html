@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills — Russell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="page-header">
+    <a href="index.html" class="page-header__back">← BACK TO HOME</a>
+    <h1 class="id-card__name">SKILLS CATALOG</h1>
+    <nav class="page-header__nav">
+      <a href="index.html#projects">PROJECTS</a>
+      <a href="skills.html" aria-current="page">SKILLS</a>
+      <a href="about.html">ABOUT</a>
+      <a href="index.html#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="skills-catalog">
+      <div class="skills-catalog__grid">
+
+        <article class="index-card" data-tilt="a">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <p class="index-card__tag">DRAWER 01</p>
+          <h3 class="index-card__title">Programming Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">C</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">Lua</span>
+            <span class="skill-tag">PowerShell</span>
+          </div>
+        </article>
+
+        <article class="index-card" data-tilt="b">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <p class="index-card__tag">DRAWER 02</p>
+          <h3 class="index-card__title">IT Operations & Help Desk</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Tier 1/2 Support</span>
+            <span class="skill-tag">SLA Management</span>
+            <span class="skill-tag">Ticketing</span>
+            <span class="skill-tag">User Onboarding/Offboarding</span>
+          </div>
+        </article>
+
+        <article class="index-card" data-tilt="c">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <p class="index-card__tag">DRAWER 03</p>
+          <h3 class="index-card__title">Networking & Systems</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">LAN/Wi-Fi Setup</span>
+            <span class="skill-tag">VPN</span>
+            <span class="skill-tag">TCP/IP</span>
+            <span class="skill-tag">DNS/DHCP</span>
+            <span class="skill-tag">Entra ID (Azure AD)</span>
+            <span class="skill-tag">M365 Admin</span>
+          </div>
+        </article>
+
+        <article class="index-card" data-tilt="a">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <p class="index-card__tag">DRAWER 04</p>
+          <h3 class="index-card__title">Hardware & Repairs</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PC Custom Builds</span>
+            <span class="skill-tag">Laptop Maintenance</span>
+            <span class="skill-tag">Diagnostics</span>
+            <span class="skill-tag">Peripheral & POS Support</span>
+          </div>
+        </article>
+
+        <article class="index-card" data-tilt="b">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <p class="index-card__tag">DRAWER 05</p>
+          <h3 class="index-card__title">Game Dev & Design Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Game Engine Scripting</span>
+            <span class="skill-tag">Pixel Art Creation</span>
+            <span class="skill-tag">3D Modeling (Blender)</span>
+            <span class="skill-tag">Asset Integration</span>
+          </div>
+        </article>
+
+        <article class="index-card" data-tilt="c">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <p class="index-card__tag">DRAWER 06</p>
+          <h3 class="index-card__title">Systems & Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Windows OS</span>
+            <span class="skill-tag">Git/GitHub</span>
+            <span class="skill-tag">Hyper-V/Proxmox</span>
+            <span class="skill-tag">Intune/MDM</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICATIONS ============
+         Styled as approval stamps, since that's literally what they are. -->
+    <section class="certs-section">
+      <h2 class="section-title section-title--pinned">
+        <span class="pushpin" aria-hidden="true"></span>
+        CERTIFIED
+      </h2>
+      <div class="certs">
+        <span class="stamp stamp--green">COMPTIA A+</span>
+        <span class="stamp stamp--green">MS-900 · M365 FUNDAMENTALS</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span class="coin-spinner" aria-hidden="true"></span>
+    <p>ASSEMBLED BY HAND · <span id="year"></span></p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

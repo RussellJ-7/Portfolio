@@ -24,7 +24,8 @@
 
     <nav class="masthead__nav">
       <a href="#projects">PROJECTS</a>
-      <a href="#about">ABOUT</a>
+      <a href="skills.html">SKILLS</a>
+      <a href="about.html">ABOUT</a>
       <a href="#contact">CONTACT</a>
     </nav>
   </header>
@@ -43,12 +44,22 @@
         Personal tools, an idle game, a desktop widget. Scroll down,
         everything below is real and shipped.
       </p>
+
+      <!-- TRINKET: a little terminal-style status line with a blinking cursor.
+           Purely decorative (aria-hidden), just a nerdy flourish. -->
+      <p class="hero__status" aria-hidden="true">
+        status: currently debugging nothing<span class="blink-cursor">_</span>
+      </p>
     </section>
 
     <!-- ============ PROJECTS (the corkboard) ============ -->
     <section id="projects" class="corkboard">
 
-      <h2 class="section-title">CASE FILES</h2>
+      <h2 class="section-title section-title--pinned">
+        <!-- TRINKET: a little thumbtack that idly wobbles (see .pushpin in style.css) -->
+        <span class="pushpin" aria-hidden="true"></span>
+        CASE FILES
+      </h2>
 
       <div class="corkboard__grid">
 
@@ -99,23 +110,35 @@
           <span class="stamp stamp--green">SHIPPED</span>
         </article>
 
+        <!-- PLACEHOLDER CARD — swap this in for your next real project.
+             Left dashed/empty on purpose rather than invented, so the site
+             never shows a project that doesn't exist. -->
+        <article class="index-card index-card--placeholder" data-tilt="b">
+          <span class="punch-strip" aria-hidden="true"></span>
+          <p class="index-card__tag">CASE 04 — OPEN SLOT</p>
+          <h3 class="index-card__title">Your Next Build</h3>
+          <p class="index-card__body">
+            Homelab project? Something with Blender or a Lua game mod?
+            Drop the write-up in here — tag, title, body, stack, stamp,
+            same pattern as the cards above.
+          </p>
+          <p class="index-card__stack">PROXMOX · DOCKER · ??? </p>
+          <span class="stamp">PENDING</span>
+        </article>
+
       </div>
     </section>
 
-    <!-- ============ ABOUT ============ -->
-    <section id="about" class="about">
+    <!-- ============ ABOUT (teaser — full page lives at about.html) ============ -->
+    <section id="about-teaser" class="about-teaser">
       <h2 class="section-title">MARGIN NOTES</h2>
-      <div class="about__clipping">
+      <div class="about__clipping about__clipping--teaser">
         <p>
-          I'm a hobbyist builder who likes finishing things enough to
-          hand them to someone else — a friend, a player, a browser tab.
-          Comfortable getting stuck into new tools (Unity, Electron,
-          OAuth flows) and reading the docs until it clicks.
+          CS student and IT specialist who also builds games, homelabs,
+          and pixel art on the side. Full story, photos, and hobbies
+          on the about page.
         </p>
-        <p>
-          Looking for CS / IT roles where I can keep building things
-          people actually use.
-        </p>
+        <a href="about.html" class="clipping-link">READ THE FULL FILE →</a>
       </div>
     </section>
 
@@ -123,15 +146,18 @@
     <section id="contact" class="contact">
       <h2 class="section-title">GET IN TOUCH</h2>
       <div class="contact__card">
-        <p class="contact__line">EMAIL — <a href="mailto:you@example.com">you@example.com</a></p>
-        <p class="contact__line">GITHUB — <a href="#">github.com/yourname</a></p>
-        <p class="contact__line">RESUME — <a href="#">download.pdf</a></p>
+        <p class="contact__line">EMAIL — <a href="mailto:russelljensen207@gmail.com">russelljensen207@gmail.com</a></p>
+        <p class="contact__line">GITHUB — <a href="https://github.com/RussellJ-7?tab=overview&amp;from=2026-08-01&amp;to=2026-08-31" target="_blank" rel="noopener noreferrer">GitHub Profile</a></p>
+        <p class="contact__line">RESUME — <a href="Images/RJ-Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a></p>
       </div>
     </section>
 
   </main>
 
   <footer class="footer">
+    <!-- TRINKET: a small spinning coin, a nod to the Plinko Tycoon currency icon.
+         Pure decoration (aria-hidden), CSS-animated, no image file needed. -->
+    <span class="coin-spinner" aria-hidden="true"></span>
     <p>ASSEMBLED BY HAND · <span id="year"></span></p>
   </footer>
 
